@@ -21,15 +21,8 @@ namespace CompanyEmployees.Presentation.Controllers
         [HttpGet]
         public IActionResult GetEmployees()
         {
-            try
-            {
-                var employees = _service.EmployeeService.GetAllEmployees(trackChanges: false);
-                return Ok(employees);
-            }
-            catch(Exception)
-            {
-                return StatusCode(500, "Internal server errror");
-            }
+            var employees = _service.EmployeeService.GetAllEmployees(trackChanges: false);
+            return Ok(employees);
         }
     }
 }

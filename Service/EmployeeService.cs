@@ -25,17 +25,9 @@ namespace Service
         }
         public IEnumerable<EmployeeDto> GetAllEmployees(bool trackChanges)
         {
-            try
-            {
-                var employees = _repository.Employee.GetAllEmployees(trackChanges);
-                var employeeDto = _mapper.Map<IEnumerable<EmployeeDto>>(employees);
-                return employeeDto;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Something went wrong in the { nameof(GetAllEmployees)} service method { ex} ");
-                throw;
-            }
+            var employees = _repository.Employee.GetAllEmployees(trackChanges);
+            var employeeDto = _mapper.Map<IEnumerable<EmployeeDto>>(employees);
+            return employeeDto;
         }
     }
 }
