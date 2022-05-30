@@ -13,12 +13,17 @@ LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(),
 
 builder.Services.ConfigureCors();
 builder.Services.ConfigureIISIntegration();
-builder.Services.AddControllers().AddApplicationPart(typeof(CompanyEmployees.Presentation.AssemblyReference).Assembly);
+builder.Services.AddControllers(config => { config.RespectBrowserAcceptHeader = true;
+    config.ReturnHttpNotAcceptable = true;
+}).AddXmlDataContractSerializerFormatters()
+    .AddCustomCSVFormatter()
+    .AddApplicationPart(typeof(CompanyEmployees.Presentation.AssemblyReference).Assembly);
 builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
 builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(Program));
+
 var app = builder.Build();
 
 var logger = app.Services.GetRequiredService<ILoggerManager>();
