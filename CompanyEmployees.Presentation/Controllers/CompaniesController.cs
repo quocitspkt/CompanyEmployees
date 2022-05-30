@@ -15,19 +15,11 @@ namespace CompanyEmployees.Presentation.Controllers
         private readonly IServiceManager _service;
         public CompaniesController(IServiceManager service) => _service = service;
 
-        [HttpGet]
-        public IActionResult GetCompanies()
+        [HttpGet("{id:guid}", Name = "CompanyById")]
+        public IActionResult GetCompanies(Guid id)
         {
-            try
-            {
-                var companies = _service.CompanyService.GetAllCompanies(trackChanges: false);
-                Console.WriteLine(companies);
-                return Ok(companies);
-            }
-            catch
-            {
-                return StatusCode(500, "Internal server errror");
-            }
+            var companies = _service.CompanyService.GetCompany(id, trackChanges: false);
+            return Ok(companies);
         }
     }
 }
