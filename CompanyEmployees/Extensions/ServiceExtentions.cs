@@ -1,6 +1,5 @@
 ﻿using Contracts;
 using LoggerService;
-using Microsoft.EntityFrameworkCore;
 using Repository;
 using Service;
 using Service.Contracts;

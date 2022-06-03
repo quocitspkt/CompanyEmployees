@@ -1,10 +1,5 @@
 ﻿using Contracts;
 using Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository
 {
@@ -14,6 +9,14 @@ namespace Repository
             : base(repositoryContext)
         {
         }
+
+        public void CreateEmployeeForCompany(Guid companyId, Employee employee)
+        {
+            employee.CompanyId = companyId;
+            Create(employee);
+        }
+
+        public void DeleteEmployee(Employee employee)=>Delete(employee);
 
         public Employee GetEmployee(Guid companyId, Guid employeeId, bool trackChanges)
         {
