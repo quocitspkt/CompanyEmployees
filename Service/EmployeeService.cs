@@ -5,6 +5,7 @@ using Entities.Exceptions;
 using Service.Contracts;
 using Shared.DataTransferObjects;
 using Shared.RequestFeatures;
+using System.Collections;
 
 namespace Service
 {
@@ -30,7 +31,6 @@ namespace Service
             await _repository.SaveAsync();
 
             var employeeReturn = _mapper.Map<EmployeeDto>(employeeEntity);
-
             return employeeReturn;
         }
 
